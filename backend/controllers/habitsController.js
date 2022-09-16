@@ -3,8 +3,21 @@ const mongoose = require('mongoose')
 
 //get all habits
 const getHabits = async (req, res) => {
-    //connect to Mongo using mongoose
-    res.send("Got all habits")
+    try {
+        //connect to Mongo using mongoose
+        res.status(200).send("Got all habits")
+    } catch (error) {
+        res.status(404).json({err})
+    }
+}
+
+const getHabitById = async (req, res) => {
+    try {
+        //connect to Mongo using mongoose
+        res.status(200).send(`Got habit ${req.params.id}`)
+    } catch (error) {
+        res.status(404).json({err})
+    }
 }
 
 //create a new habit
@@ -13,13 +26,19 @@ const createHabit = async (req, res) => {
 
     try {
         const habit = await Habit.create({ name, period, frequency, currentStreak, maxStreak })
-        res.status(200).json(habit)
+        res.status(201).json(habit)
     } catch (error) {
         res.status(400).json({error: error.message})
     }
 }
 
-module.exports = {
-    getHabits,
-    createHabit
+const destroyHabit = async (req, res) => {
+    try {
+        //connect to Mongo using mongoose
+        res.status(204).send('Destoryed habit')
+    } catch (error) {
+        res.status(404).json({err})
+    }
 }
+
+module.exports = {getHabits, getHabitById, createHabit, destroyHabit};

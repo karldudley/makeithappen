@@ -1,7 +1,9 @@
 const express = require('express')
 const {
     getHabits,
-    createHabit
+    getHabitById,
+    createHabit,
+    destroyHabit
  } = require('../controllers/habitsController')
 
 const router = express.Router()
@@ -9,7 +11,13 @@ const router = express.Router()
 // GET all habits
 router.get('/', getHabits)
 
-// POST a new habit
+// GET habit by id
+router.get('/:id', getHabitById)
+
+// POST new habit
 router.post('/', createHabit)
+
+// DELETE habit
+router.delete('/', destroyHabit)
 
 module.exports = router;
