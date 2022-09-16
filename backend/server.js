@@ -13,10 +13,10 @@ if (process.env.NODE_ENV === 'development') {
   server.use(morgan('dev'))
 }
 
-// redirect users to habits if they go to root domain
+// redirect or display message?
 server.get('/', (req, res) => {
-    // res.send("Hello!")
-    res.redirect('/habits');
+    res.send("Welcome to the Make it Happen server. The following endpoints currently exist: GET '/habits/', GET '/habits/:id', POST '/habits/', DELETE '/habits/:id', PATCH '/habits/:id'")
+    // res.redirect('/habits');
   });
 
 // routes
