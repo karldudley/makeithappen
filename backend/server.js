@@ -8,10 +8,10 @@ server.use(cors());
 server.use(express.json())
 
 // morgan
-const morgan = require('morgan')
-if (process.env.NODE_ENV === 'development') {
-  app.use(morgan('dev'))
-}
+// const morgan = require('morgan')
+// if (process.env.NODE_ENV === 'development') {
+//   app.use(morgan('dev'))
+// }
 
 // routes
 server.use('/habits', habitRoutes)
