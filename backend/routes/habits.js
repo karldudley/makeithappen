@@ -10,6 +10,9 @@ router.get('/', habitsController.getHabits)
 router.get('/:id', habitsController.getHabitById)
 
 // POST new habit
-router.post('/', habitsController.postHabit)
+router.post('/', habitsController.createHabit)
+
+// DELETE habit
+router.delete('/', habitsController.destroyHabit)
 
 module.exports = router;
