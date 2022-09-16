@@ -14,11 +14,8 @@ const getHabits = async (req, res) => {
 // get a habit by id
 const getHabitById = async (req, res) => {
     try {
-        //connect to Mongo using mongoose
-        const id = toString(req.params.id)
-        const habit = await Habit.find({_id: id})
+        const habit = await Habit.findById(req.params.id)
         res.status(200).json(habit)
-        // res.status(200).send(`Got habit ${req.params.id}`)
     } catch (error) {
         res.status(404).json({error: error.message})
     }
