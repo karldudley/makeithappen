@@ -15,7 +15,7 @@ if (process.env.NODE_ENV === 'development') {
 
 // redirect or display message?
 server.get('/', (req, res) => {
-    res.send("Welcome to the Make it Happen server. The following endpoints currently exist: GET '/habits/', GET '/habits/:id', POST '/habits/', DELETE '/habits/:id', PATCH '/habits/:id'")
+    res.send("<h1>Welcome to the Make it Happen server</h1><h2>The following endpoints currently exist:</h2><h3>GET /habits</h3><h3>GET /habits/:id</h3><h3>POST /habits/</h3><h3>DELETE /habits/:id</h3><h3>PATCH /habits/:id")
     // res.redirect('/habits');
   });
 
