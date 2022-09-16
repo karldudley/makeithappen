@@ -1,0 +1,66 @@
+:root {
+    --ruby: #D81159;
+    --ivory: #F6F7EB
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--ivory);
+    flex-grow: 1;
+}
+
+.navbar {
+    height: 70px;
+    background-color: var(--ruby);
+}
+
+.navbar-brand {
+    color: white;
+}
+
+.btn-css {
+    width: 150px;
+    font-size: 30px;
+    border: solid 1px var(--ruby);
+    color: var(--ruby);
+    background-color: transparent;
+    border-radius: 10px 10px 10px 10px;
+}
+
+.btn-css:hover {
+    border: solid 1px var(--ruby);
+    background-color: var(--ruby);
+    color: ivory;
+}
+
+li {
+    padding-left: 10px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    transform: scale(2);
+}
+
+form > div {
+    margin: 30px;
+}
+
+label {
+    width: 100px;
+}
+
+input,
+select {
+    width: 100px;
+}
