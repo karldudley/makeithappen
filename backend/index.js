@@ -1,6 +1,6 @@
 const app = require('./server');
 const mongoose = require('mongoose')
-
+require('dotenv').config()
 const port = process.env.PORT || 3000;
 
 //connection to mongo and start to listen
