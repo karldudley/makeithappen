@@ -28,7 +28,7 @@ const createHabit = async (req, res) => {
         const habit = await Habit.create({ name, period, frequency, currentStreak, maxStreak })
         res.status(201).json(habit)
     } catch (error) {
-        res.status(400).json({error: error.message})
+        res.status(422).json({error: error.message})
     }
 }
 
