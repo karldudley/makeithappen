@@ -1,7 +1,8 @@
 const express = require('express')
 const cors = require('cors');
 const habitRoutes = require('./routes/habits')
-require('dotenv').config()
+const userRoutes = require('./routes/users')
+
 
 //express app
 const server = express()
@@ -22,6 +23,7 @@ server.get('/', (req, res) => {
 
 // routes
 server.use('/habits', habitRoutes)
+server.use('/users', userRoutes)
 
 
 module.exports = server;
