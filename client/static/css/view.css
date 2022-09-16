@@ -1,0 +1,65 @@
+:root {
+    --ruby: #D81159;
+    --ivory: #F6F7EB
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: ivory;
+    align-items: center;
+}
+
+section {
+    padding: 100px;
+    display: grid;
+    grid-template-columns: repeat(3,400px);
+    grid-column-gap: 60px;
+    grid-row-gap: 60px;
+}
+
+.navbar {
+    height: 70px;
+    background-color: var(--ruby);
+    width: 100%;
+}
+
+.navbar-brand {
+    color: white;
+}
+
+.btn-css {
+    width: 150px;
+    font-size: 30px;
+    border: solid 1px var(--ruby);
+    color: var(--ruby);
+    background-color: transparent;
+    border-radius: 10px 10px 10px 10px;
+}
+
+.btn-css:hover {
+    border: solid 1px var(--ruby);
+    background-color: var(--ruby);
+    color: ivory;
+}
+
+a {
+    text-decoration: none;
+}
+
+.accordion {
+    width: 100%;
+}
+
+.center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.progress {
+    width: 80%;
+    margin-top: 10px;
+    margin-bottom: 10px ;
+}
