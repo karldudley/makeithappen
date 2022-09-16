@@ -35,7 +35,7 @@ const createHabit = async (req, res) => {
 const destroyHabit = async (req, res) => {
     try {
         //connect to Mongo using mongoose
-        res.status(204).send('Destoryed habit')
+        res.status(204).send('Destroyed habit')
     } catch (error) {
         res.status(404).json({err})
     }
