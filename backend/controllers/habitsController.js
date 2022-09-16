@@ -11,6 +11,7 @@ const getHabits = async (req, res) => {
     }
 }
 
+// get a habit by id
 const getHabitById = async (req, res) => {
     try {
         //connect to Mongo using mongoose
@@ -35,6 +36,7 @@ const createHabit = async (req, res) => {
     }
 }
 
+// delete an existing habit
 const destroyHabit = async (req, res) => {
     try {
         //connect to Mongo using mongoose
