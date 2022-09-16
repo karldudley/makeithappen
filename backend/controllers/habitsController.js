@@ -4,19 +4,22 @@ const mongoose = require('mongoose')
 //get all habits
 const getHabits = async (req, res) => {
     try {
-        //connect to Mongo using mongoose
-        res.status(200).send("Got all habits")
+        const habits = await Habit.find()
+        res.status(200).json(habits)
     } catch (error) {
-        res.status(404).json({err})
+        res.status(404).json({error: error.message})
     }
 }
 
 const getHabitById = async (req, res) => {
     try {
         //connect to Mongo using mongoose
-        res.status(200).send(`Got habit ${req.params.id}`)
+        const id = toString(req.params.id)
+        const habit = await Habit.find({_id: id})
+        res.status(200).json(habit)
+        // res.status(200).send(`Got habit ${req.params.id}`)
     } catch (error) {
-        res.status(404).json({err})
+        res.status(404).json({error: error.message})
     }
 }
 
@@ -37,7 +40,7 @@ const destroyHabit = async (req, res) => {
         //connect to Mongo using mongoose
         res.status(204).send('Destroyed habit')
     } catch (error) {
-        res.status(404).json({err})
+        res.status(404).json({error: error.message})
     }
 }
 
