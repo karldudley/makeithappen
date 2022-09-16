@@ -4,4 +4,9 @@ const getHabits = async (req, res) => {
     res.send("Got all habits")
 }
 
-module.exports = getHabits;
+const getHabitById = async (req, res) => {
+    //connect to Mongo using mongoose
+    res.send(`Got habit ${req.params.id}`)
+}
+
+module.exports = {getHabits, getHabitById};
