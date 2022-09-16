@@ -42,6 +42,25 @@ section {
     color: ivory;
 }
 
-a {
-    text-decoration: none;
+li {
+    padding-left: 10px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    transform: scale(2);
+}
+
+form > div {
+    margin: 30px;
+}
+
+label {
+    width: 100px;
+}
+
+input,
+select {
+    width: 100px;
 }
