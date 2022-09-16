@@ -9,4 +9,9 @@ const getHabitById = async (req, res) => {
     res.send(`Got habit ${req.params.id}`)
 }
 
-module.exports = {getHabits, getHabitById};
+const postHabit = async (req, res) => {
+    //connect to Mongo using mongoose
+    res.send('Created new habit')
+}
+
+module.exports = {getHabits, getHabitById, postHabit};
