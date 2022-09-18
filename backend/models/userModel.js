@@ -18,7 +18,7 @@ const userSchema = new Schema({
 }, { timestamps: true })
 
 // static signup method
-userSchema.statics.signup = async  function (email, password) {
+userSchema.statics.signup = async function (email, password) {
     //validation
     if (!email || !password) {
         throw Error("All fields must be filled")
@@ -49,7 +49,7 @@ userSchema.statics.signup = async  function (email, password) {
 userSchema.statics.login = async function(email, password) {
     //validation
     if (!email || !password) {
-        throw Error("All fields must be filled")
+        throw Error("All fields must be filled!")
     }
 
     const user = await this.findOne({ email })

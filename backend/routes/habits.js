@@ -5,9 +5,13 @@ const {
     createHabit,
     destroyHabit,
     updateHabit
- } = require('../controllers/habitsController')
+} = require('../controllers/habitsController')
+const requireAuth = require("../middleware/requireAuth")
 
 const router = express.Router()
+
+//require auth for all habit routes
+router.use(requireAuth)
 
 // GET all habits
 router.get('/', getHabits)
