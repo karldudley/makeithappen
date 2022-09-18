@@ -4,7 +4,11 @@ const mongoose = require('mongoose')
 //get all habits
 const getHabits = async (req, res) => {
     try {
-        const habits = await Habit.find({}).sort({createdAt: -1})
+        const user_id = req.user._id
+        // only return habits for the currently logged in user
+        const habits = await Habit.find({ user_id }).sort({createdAt: -1})
+
+        console.log(habits)
         res.status(200).json(habits)
     } catch (error) {
         res.status(404).json({error: error.message})
@@ -26,7 +30,8 @@ const createHabit = async (req, res) => {
     const { name, period, frequency, currentStreak, maxStreak } = req.body;
 
     try {
-        const habit = await Habit.create({ name, period, frequency, currentStreak, maxStreak })
+        const user_id = req.user._id;
+        const habit = await Habit.create({ name, period, frequency, currentStreak, maxStreak, user_id })
         res.status(201).json(habit)
     } catch (error) {
         res.status(422).json({error: error.message})
