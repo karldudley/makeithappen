@@ -11,7 +11,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
         crossorigin="anonymous"></script>
+        <script  defer src="./static/js/create.js"></script>
     <link rel="stylesheet" href="./static/css/create.css" />
+
     <title>Make It Happen</title>
 </head>
 
@@ -24,11 +26,11 @@
     </nav>
 
     <section>
-        <form action="">
+        <form id="create-new-habit" action="">
 
             <div>
                 <label for="task">Task</label>
-                <select name="Task">
+                <select name="task" id="task">
                     <option value="Sleep">Sleep</option>
                     <option value="Drink water">Drink water</option>
                     <option value="Exercise">Exercise</option>
@@ -37,19 +39,11 @@
             </div>
 
             <div>
-                <label for="frequency">Frequency</label>
-                <select name="frequency" id="frequency">
-                    <option value="1 hour">1 hour</option>
-                    <option value="5 hours">5 hours</option>
-                    <option value="12 hours">12 hours</option>
-                    <option value="Every day">Every day</option>
-                </select>
+                <label for="goal">Target</label>
+                <input type="number" id="goal" name="goal" min="0">
             </div>
 
-            <div>
-                <label for="target">Target</label>
-                <input type="number" id="quantity" name="target" min="0">
-            </div>
+            <input type="submit" value="Create Habit">
 
         </form>
     </section>
