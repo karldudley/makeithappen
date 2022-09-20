@@ -4,11 +4,7 @@ function createHabit(e) {
 
     const entryData = {
         name: e.target.task.value,
-        period: 3,
-        frequency: 2,
-        currentStreak: 3,
-        maxStreak: 5,
-        user_id: 'yukguguk'
+        targetVal: e.target.goal.value
     };
 
     const options = {
@@ -19,7 +15,7 @@ function createHabit(e) {
         }
     };
 
-    fetch('http://localhost:3000/habits', options)
+    fetch('https://make-it-happen-fp.herokuapp.com/habits', options)
         .then(r => r.json())
         .catch(console.warn)
 
