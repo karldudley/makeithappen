@@ -31,7 +31,8 @@ const getHabitById = async (req, res) => {
 
 //create a new habit
 const createHabit = async (req, res) => {
-    const { name, targetVal, currentVal, currentStreak, maxStreak } = req.body;
+    // const { name, targetVal, currentVal, currentStreak, maxStreak } = req.body;
+    const { name, targetVal } = req.body;
 
     try {
         // AUTH
@@ -39,6 +40,12 @@ const createHabit = async (req, res) => {
 
         // NO AUTH FOR TESTING
         const user_id = "111"
+
+        currentVal = 0;
+        currentStreak = 0;
+        maxStreak = 0;
+
+        // const habit = await Habit.create({ name, targetVal, currentVal, currentStreak, maxStreak, user_id })
         const habit = await Habit.create({ name, targetVal, currentVal, currentStreak, maxStreak, user_id })
         res.status(201).json(habit)
     } catch (error) {
