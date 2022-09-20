@@ -34,35 +34,10 @@ describe('Reading Details of User', () => {
 })
 
 describe('Updating a user', () => { 
-    // Handling Redundant Code
-    // function helperFunc(assertion, done) {
-    // assertion
-    //     .then(() => User.find({}))
-    //     .then((users) => {
-    //         assert(users.length === 1);
-    //         assert(users[0].name === 'Updated Shriyam');
-    //         done();
-    //     });
-    // }
-  
-    // it('Sets and saves a user using an instance', (done) => {
-    //     Not yet updated in MongoDb
-    //     user.set('email', 'kev@example.com');
-    //     helperFunc(user.save(), done);
-    // });
     it('Sets and saves a user using an instance', (done) => {
         user.set('email', 'kev@example.com')
         done();
-            // .then(() => User.findOne({ email: 'kev@example.com' }))
-            // .then((user) => {
-            //     assert(user.email == 'kev@example.com');
-            //     done();
-            // });
     });
-  
-    // it('Update a user using instance', (done) => {
-    //     helperFunc(user.update({ email: 'kev@example.com' }), done);
-    // });
 });
 
 describe('Deleting a user', () => {
