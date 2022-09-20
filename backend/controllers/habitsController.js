@@ -4,9 +4,10 @@ const mongoose = require('mongoose')
 //get all habits
 const getHabits = async (req, res) => {
     try {
-        const user_id = req.user._id
+        // const user_id = req.user._id
         // only return habits for the currently logged in user
-        const habits = await Habit.find({ user_id }).sort({createdAt: -1})
+        // const habits = await Habit.find({ user_id }).sort({createdAt: -1})
+        const habits = await Habit.find({  }).sort({createdAt: -1})
 
         console.log(habits)
         res.status(200).json(habits)
