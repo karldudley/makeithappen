@@ -7,11 +7,11 @@ const habitSchema = new Schema({
     type: String,
     required: true
   },
-  period: {
-    type: String,
+  targetVal: {
+    type: Number,
     required: true
   },
-  frequency: {
+  currentVal: {
     type: Number,
     required: true
   },
