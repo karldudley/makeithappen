@@ -4,9 +4,12 @@ const mongoose = require('mongoose')
 //get all habits
 const getHabits = async (req, res) => {
     try {
+        // AUTH
         // const user_id = req.user._id
         // only return habits for the currently logged in user
         // const habits = await Habit.find({ user_id }).sort({createdAt: -1})
+
+        //NO AUTH FOR TESTING
         const habits = await Habit.find({  }).sort({createdAt: -1})
 
         console.log(habits)
