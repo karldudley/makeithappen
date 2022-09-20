@@ -1,5 +1,5 @@
 function getAllHabits() {
-    fetch('https://make-it-happen-fp.herokuapp.com/')
+    fetch('https://make-it-happen-fp.herokuapp.com/habits')
         .then(r => r.json())
         .then(appendHabits)
         .catch(console.warn)
@@ -23,10 +23,10 @@ function appendHabit(entryData) {
 
     const accordionHeader = document.createElement('h2')
     accordionHeader.className = 'accordion-header'
-    // accordionHeader.textContent = entryData.name 
+    accordionHeader.textContent = entryData.name 
 
     const image = document.createElement('img')
-    image.setAttribute('src', './images/sleep icon.png')
+    image.src = './static/images/sleepicon.png'
 
     const progressBarDiv = document.createElement('div')
     progressBarDiv.className = 'progress'
@@ -95,30 +95,33 @@ function appendHabit(entryData) {
     accordionDiv.appendChild(moreInfoDiv)
 }
 
-function createHabit(e) {
+// function createHabit(e) {
 
-    e.preventDefault()
+//     e.preventDefault()
 
-    const entryData = {
-        task: e.target.task.value,
-        target: e.target.goal.value,
-        frequency: e.target.frequency.value
-    };
+//     const entryData = {
+//         task: e.target.task.value,
+//         target: e.target.goal.value,
+//         frequency: e.target.frequency.value
+//     };
 
-    const options = {
-        method: 'POST',
-        body: JSON.stringify(entryData),
-        headers: {
-            "Content-Type": "application/json"
-        }
-    };
+//     const options = {
+//         method: 'POST',
+//         body: JSON.stringify(entryData),
+//         headers: {
+//             "Content-Type": "application/json"
+//         }
+//     };
 
-    fetch('https://make-it-happen-fp.herokuapp.com/', options)
-        .then(r => r.json())
-        .catch(console.warn)
+//     fetch('https://make-it-happen-fp.herokuapp.com/', options)
+//         .then(r => r.json())
+//         .catch(console.warn)
 
-};
+// };
 
 
-const form = document.querySelector('#create-new-habit')
-form.addEventListener('submit', createHabit)
+// const form = document.querySelector('#create-new-habit')
+// form.addEventListener('submit', createHabit)
+
+getAllHabits()
+// 
