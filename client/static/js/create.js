@@ -24,3 +24,5 @@ function createHabit(e) {
 
 const form = document.querySelector('#create-new-habit')
 form.addEventListener('submit', createHabit)
+
+module.exports = {createHabit}
