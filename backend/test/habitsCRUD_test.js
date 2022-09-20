@@ -40,7 +40,7 @@ describe('Reading Details of Habit', () => {
 
 describe('Updating a habit', () => { 
     it('Sets and saves a habit using an instance', (done) => {
-        habit.set('currentVal', 7)
+        habit.set('currentVal', 1)
         done();
     });
 });
