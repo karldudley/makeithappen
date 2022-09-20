@@ -10,6 +10,7 @@ function appendHabits(habits) {
 }
 
 function appendHabit(entryData) {
+    localStorage.setItem(entryData.name, entryData._id)
     const habitSection = document.querySelector('section')
 
     const accordionDiv = document.createElement('div')
@@ -23,7 +24,7 @@ function appendHabit(entryData) {
 
     const accordionHeader = document.createElement('h2')
     accordionHeader.className = 'accordion-header'
-    accordionHeader.textContent = entryData.name 
+    accordionHeader.textContent = entryData.name
 
     const image = document.createElement('img')
     image.src = './static/images/sleepicon.png'
@@ -71,29 +72,108 @@ function appendHabit(entryData) {
     statsDiv.setAttribute('data-bs-parent', `${accordionDiv.id}`)
 
     const accordionBodyDiv = document.createElement('div')
-    accordionBodyDiv.className = 'accordion-body'
+    accordionBodyDiv.className = `${entryData.name}Body accordion-body`
 
     const ul = document.createElement('ul')
 
     const progressLi = document.createElement('li')
-    progressLi.textContent ='Progress'
+    progressLi.textContent = `Progress: ${entryData.currentVal}`
+    progressLi.className = `${entryData.name}Progress`
 
     const targetLi = document.createElement('li')
-    targetLi.textContent = 'Target'
+    targetLi.textContent = `Target: ${entryData.targetVal}`
+    targetLi.className = `${entryData.name}Target`
 
     const streakLi = document.createElement('li')
-    streakLi.textContent = 'Continuation Streak'
+    streakLi.textContent = `Continuation Streak: ${entryData.currentStreak}`
+
+    const updateButton = document.createElement('button')
+    updateButton.textContent = "Edit"
+    updateButton.className = `${entryData.name}`
+    updateButton.addEventListener('click', updateHabit)
+
 
     ul.appendChild(progressLi)
     ul.appendChild(targetLi)
     ul.appendChild(streakLi)
 
     accordionBodyDiv.appendChild(ul)
+    accordionBodyDiv.appendChild(updateButton)
 
     statsDiv.appendChild(accordionBodyDiv)
     moreInfoDiv.appendChild(statsDiv)
     accordionDiv.appendChild(moreInfoDiv)
 }
+getAllHabits()
+
+
+function updateHabit (e) {    
+    const progressInput = document.createElement('input') 
+    progressInput.setAttribute('type', 'number')
+    progressInput.className = `${e.target.className}ProgressInput`
+
+    const targetInput = document.createElement('input') 
+    targetInput.setAttribute('type', 'number')
+    targetInput.className = `${e.target.className}TargetInput`
+
+    const progressLi = document.querySelector(`.${e.target.className}Progress`)
+    console.log(progressLi)
+    progressLi.textContent = 'Progress: '
+    progressLi.appendChild(progressInput)
+
+    const targetLi = document.querySelector(`.${e.target.className}Target`)
+    targetLi.textContent = "Target: "
+    targetLi.appendChild(targetInput)
+
+    const saveButton = document.createElement('button')
+    saveButton.textContent = "Save"
+    saveButton.className = `${e.target.className}`
+    saveButton.addEventListener('click', submitUpdatedHabits)
+    
+    const accordionBody = document.querySelector(`.${e.target.className}Body`)
+    accordionBody.appendChild(saveButton)
+}
+
+function submitUpdatedHabits (e) {
+    const progressInput = document.querySelector(`.${e.target.className}ProgressInput`)
+
+    const targetInput = document.querySelector(`.${e.target.className}TargetInput`)
+    
+    const progressLi = document.querySelector(`.${e.target.className}Progress`)
+    progressLi.textContent = `Progress: ${progressInput.value}`
+
+    const targetLi = document.querySelector(`.${e.target.className}Target`)
+    targetLi.textContent = `Target: ${targetInput.value}`
+    postHabit(e)
+}
+
+function postHabit(e) {
+
+    e.preventDefault()
+    const progressInput = document.querySelector(`.${e.target.className}ProgressInput`)
+
+    const targetInput = document.querySelector(`.${e.target.className}TargetInput`)
+
+    const entryData = {
+        currentVal: progressInput.value,
+        targetVal: progressInput.value
+    };
+
+    const options = {
+        method: 'PATCH',
+        body: JSON.stringify(entryData),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    };
+
+    fetch('https://make-it-happen-fp.herokuapp.com/habits', options)
+        .then(r => r.json())
+        .catch(console.warn)
+
+};
+
+
 
 // function createHabit(e) {
 
@@ -123,5 +203,4 @@ function appendHabit(entryData) {
 // const form = document.querySelector('#create-new-habit')
 // form.addEventListener('submit', createHabit)
 
-getAllHabits()
 // 
