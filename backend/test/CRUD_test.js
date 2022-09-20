@@ -11,7 +11,7 @@ beforeEach(() => {
         .then(() => done());
 });
 
-describe('Creating documents in MongoDB', () => {
+describe('Creating a user in MongoDB', () => {
     it('Creates a New User', (done) => {
         const newUser = new User({ email: 'karl@example.com', password: "test123" });
         newUser.save() // returns a promise after some time
