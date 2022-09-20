@@ -24,11 +24,11 @@
     </nav>
 
     <section>
-        <form action="">
+        <form id="create-new-habit" action="">
 
             <div>
                 <label for="task">Task</label>
-                <select name="Task">
+                <select name="Task" id="task">
                     <option value="Sleep">Sleep</option>
                     <option value="Drink water">Drink water</option>
                     <option value="Exercise">Exercise</option>
@@ -48,8 +48,10 @@
 
             <div>
                 <label for="target">Target</label>
-                <input type="number" id="quantity" name="target" min="0">
+                <input type="number" id="goal" name="target" min="0">
             </div>
+
+            <input type="submit" value="Create Habit">
 
         </form>
     </section>
