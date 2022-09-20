@@ -204,3 +204,5 @@ function postHabit(e) {
 // form.addEventListener('submit', createHabit)
 
 // 
+
+module.exports = {getAllHabits, appendHabit, appendHabits}
