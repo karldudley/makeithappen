@@ -119,6 +119,29 @@ function appendHabit(entryData) {
     const streakLi = document.createElement('li')
     streakLi.textContent = `Continuation Streak: ${entryData.currentStreak}`
 
+/* MY NEW CODE FOR CHECK COMPLETE/STREAK */
+    let streakDate = new Date(entryData.streakDate)
+    let today = new Date()
+    // check if they are the same day
+    let isSameDay = (streakDate.getDate() === today.getDate() 
+    && streakDate.getMonth() === today.getMonth()
+    && streakDate.getFullYear() === today.getFullYear())
+
+    if (!isSameDay) {
+        console.log("here")
+        const compLi = document.createElement('li')
+        const compLabel = document.createElement('label')
+        const compCheck = document.createElement('button')
+        compLabel.textContent = "Completed Today?"
+        compCheck.textContent = "Complete"
+        compCheck.setAttribute("id", "compCheck")
+        compCheck.addEventListener('click', sendComplete.bind(this, entryData));
+        compLi.appendChild(compLabel)
+        compLi.appendChild(compCheck)
+        ul.appendChild(compLi)
+    }
+/* MY NEW CODE FOR CHECK COMPLETE/STREAK */
+
     const updateButton = document.createElement('button')
     updateButton.textContent = "Edit"
     updateButton.className = `${entryData.name}`
@@ -254,7 +277,36 @@ async function sendDelete(id) {
     }
 }
 
-
+/* MY NEW CODE FOR CHECK COMPLETE/STREAK */
+async function sendComplete(habitObject) {
+    const id = habitObject._id
+    const newStreak = habitObject.currentStreak+1
+    try {
+        
+        const token = localStorage.getItem('token')
+        const options = {
+            method: 'PATCH',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({currentStreak:newStreak,streakDate: new Date()})
+        }
+        console.log(options)
+        const response = await fetch(`https://make-it-happen-fp.herokuapp.com/habits/${id}`, options);
+        const data = await response.json();
+        console.log(data)
+        if(data.err){
+            console.warn(data.err);
+            logout();
+        }
+        window.location.replace('./view.html')
+    } catch (err) {
+        console.log("error")
+        console.warn(err);
+    }
+}
+/* MY NEW CODE FOR CHECK COMPLETE/STREAK */
 
 // async function createHabitWhenNoHabit() {
 //     try {
