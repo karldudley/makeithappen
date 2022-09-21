@@ -11,6 +11,16 @@ function getAllHabits() {
             .then(r => r.json())
             .then(appendHabits)
             .catch(console.warn)
+
+        // return new Promise (async(resolve, reject) => {
+        //     try {
+        //         const cards = document.getElementsByClassName('accordion')
+        //         resolve(cards.length)
+        //     } catch(err) {
+        //         reject("No habits")
+        //     }
+        // })
+
     } catch (err) {
         console.log("error")
         console.warn(err);
@@ -50,7 +60,7 @@ function appendHabit(entryData) {
     const progressBarDiv = document.createElement('div')
     progressBarDiv.className = 'progress'
 
-    const progressPercentage = Math.round((entryData.currentVal/entryData.targetVal)*100)
+    const progressPercentage = Math.round((entryData.currentVal / entryData.targetVal) * 100)
 
     const progressBar = document.createElement('div')
     progressBar.className = 'progress-bar'
@@ -130,16 +140,16 @@ function appendHabit(entryData) {
 getAllHabits()
 
 
-function updateHabit (e) {
+function updateHabit(e) {
     const button = e.target
     button.setAttribute('hidden', true)
-    
-    const progressInput = document.createElement('input') 
+
+    const progressInput = document.createElement('input')
     progressInput.setAttribute('type', 'number')
     progressInput.setAttribute('min', 0)
     progressInput.className = `${e.target.className}ProgressInput`
 
-    const targetInput = document.createElement('input') 
+    const targetInput = document.createElement('input')
     targetInput.setAttribute('type', 'number')
     targetInput.setAttribute('min', 0)
     targetInput.className = `${e.target.className}TargetInput`
@@ -158,12 +168,12 @@ function updateHabit (e) {
     saveButton.textContent = "Save"
     saveButton.className = `${e.target.className}`
     saveButton.addEventListener('click', submitUpdatedHabits)
-    
+
     const accordionBody = document.querySelector(`.${e.target.className}Body`)
     accordionBody.appendChild(saveButton)
 }
 
-function submitUpdatedHabits (e) {
+function submitUpdatedHabits(e) {
     const hiddenSaveButton = e.target
     hiddenSaveButton.setAttribute('hidden', true)
 
@@ -173,14 +183,14 @@ function submitUpdatedHabits (e) {
     const progressInput = document.querySelector(`.${e.target.className}ProgressInput`)
 
     const targetInput = document.querySelector(`.${e.target.className}TargetInput`)
-    
+
     const progressLi = document.querySelector(`.${e.target.className}Progress`)
     progressLi.textContent = `Progress: ${progressInput.value}`
 
     const targetLi = document.querySelector(`.${e.target.className}Target`)
     targetLi.textContent = `Target: ${targetInput.value}`
 
-    let progressPercentage = Math.round(((progressInput.value)/(targetInput.value))*100)
+    let progressPercentage = Math.round(((progressInput.value) / (targetInput.value)) * 100)
     const updatedProgressBar = document.getElementById(`${e.target.className}progress-bar`)
     updatedProgressBar.setAttribute('style', `width: ${progressPercentage}%;`)
     updatedProgressBar.setAttribute('aria-valuenow', `${progressPercentage}`)
@@ -228,11 +238,11 @@ async function sendDelete(id) {
                     'Authorization': `Bearer ${token}`,
                     "Content-Type": "application/json"
                 }
-    
+
             }
             const response = await fetch(`https://make-it-happen-fp.herokuapp.com/habits/${id}`, options);
             const data = await response.json();
-            if(data.err){
+            if (data.err) {
                 console.warn(data.err);
                 logout();
             }
@@ -246,33 +256,29 @@ async function sendDelete(id) {
 
 
 
-// function createHabit(e) {
+// async function createHabitWhenNoHabit() {
+//     try {
+//         const something = await getAllHabits()
+//         console.log(something)
 
-//     e.preventDefault()
+//         if (!something) {
 
-//     const entryData = {
-//         task: e.target.task.value,
-//         target: e.target.goal.value,
-//         frequency: e.target.frequency.value
-//     };
+//             const redirectToCreateBtn = document.createElement('button')
+//             const redirectToCreate = document.createElement('a')
+//             redirectToCreate.setAttribute('href', 'create.html')
+//             redirectToCreateBtn.textContent = "You have no habits, try creating one!"
+//             redirectToCreate.appendChild(redirectToCreateBtn)
 
-//     const options = {
-//         method: 'POST',
-//         body: JSON.stringify(entryData),
-//         headers: {
-//             "Content-Type": "application/json"
+//             const habitSection = document.querySelector('section')
+//             habitSection.appendChild(redirectToCreate)
 //         }
-//     };
+//     } catch (err) {
 
-//     fetch('https://make-it-happen-fp.herokuapp.com/', options)
-//         .then(r => r.json())
-//         .catch(console.warn)
+//     }
+// }
 
-// };
+// createHabitWhenNoHabit()
 
-
-// const form = document.querySelector('#create-new-habit')
-// form.addEventListener('submit', createHabit)
 
 //can't export in the client
 // module.exports = {getAllHabits, appendHabit, appendHabits}
