@@ -109,6 +109,7 @@ function appendHabit(entryData) {
     const updateButton = document.createElement('button')
     updateButton.textContent = "Edit"
     updateButton.className = `${entryData.name}`
+    updateButton.id = `${entryData.name}`
     updateButton.addEventListener('click', updateHabit)
 
 
@@ -126,7 +127,10 @@ function appendHabit(entryData) {
 getAllHabits()
 
 
-function updateHabit (e) {    
+function updateHabit (e) {
+    const button = e.target
+    button.setAttribute('hidden', true)
+    
     const progressInput = document.createElement('input') 
     progressInput.setAttribute('type', 'number')
     progressInput.className = `${e.target.className}ProgressInput`
@@ -153,6 +157,12 @@ function updateHabit (e) {
 }
 
 function submitUpdatedHabits (e) {
+    const hiddenSaveButton = e.target
+    hiddenSaveButton.setAttribute('hidden', true)
+
+    const reappearUpdateButton = document.getElementById(`${e.target.className}`)
+    reappearUpdateButton.removeAttribute('hidden')
+
     const progressInput = document.querySelector(`.${e.target.className}ProgressInput`)
 
     const targetInput = document.querySelector(`.${e.target.className}TargetInput`)
