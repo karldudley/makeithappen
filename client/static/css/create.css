@@ -49,9 +49,27 @@ form > div {
 
 label {
     width: 100px;
+    /* margin-right: 20px; */
 }
 
 input,
 select {
+    height: 30px;
     width: 100px;
+}
+
+input {
+    margin-right: 10px;
+}
+
+.units {
+    display: flex;
+}
+
+.createHabit {
+    background-color: var(--ruby);
+    color: ivory;
+    border: 1px solid var(--ruby);
+    border-radius: 10px 10px 10px 10px;
+    width: fit-content;
 }

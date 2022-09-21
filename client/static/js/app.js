@@ -50,7 +50,7 @@ function appendHabit(entryData) {
     const progressBarDiv = document.createElement('div')
     progressBarDiv.className = 'progress'
 
-    const progressPercentage = (entryData.currentVal/entryData.targetVal)*100
+    const progressPercentage = Math.round((entryData.currentVal/entryData.targetVal)*100)
 
     const progressBar = document.createElement('div')
     progressBar.className = 'progress-bar'
@@ -136,17 +136,21 @@ function updateHabit (e) {
     
     const progressInput = document.createElement('input') 
     progressInput.setAttribute('type', 'number')
+    progressInput.setAttribute('min', 0)
     progressInput.className = `${e.target.className}ProgressInput`
 
     const targetInput = document.createElement('input') 
     targetInput.setAttribute('type', 'number')
+    targetInput.setAttribute('min', 0)
     targetInput.className = `${e.target.className}TargetInput`
 
     const progressLi = document.querySelector(`.${e.target.className}Progress`)
+    progressInput.setAttribute('value', parseInt((progressLi.textContent).split(' ')[1]))
     progressLi.textContent = 'Progress: '
     progressLi.appendChild(progressInput)
 
     const targetLi = document.querySelector(`.${e.target.className}Target`)
+    targetInput.setAttribute('value', parseInt((targetLi.textContent).split(' ')[1]))
     targetLi.textContent = "Target: "
     targetLi.appendChild(targetInput)
 
@@ -176,7 +180,7 @@ function submitUpdatedHabits (e) {
     const targetLi = document.querySelector(`.${e.target.className}Target`)
     targetLi.textContent = `Target: ${targetInput.value}`
 
-    let progressPercentage = ((progressInput.value)/(targetInput.value))*100
+    let progressPercentage = Math.round(((progressInput.value)/(targetInput.value))*100)
     const updatedProgressBar = document.getElementById(`${e.target.className}progress-bar`)
     updatedProgressBar.setAttribute('style', `width: ${progressPercentage}%;`)
     updatedProgressBar.setAttribute('aria-valuenow', `${progressPercentage}`)
