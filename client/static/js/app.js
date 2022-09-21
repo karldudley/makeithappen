@@ -136,9 +136,14 @@ function appendHabit(entryData) {
     targetLi.className = `${entryData.name}Target`
 
     const streakLi = document.createElement('li')
-    streakLi.textContent = `Continuation Streak: ${entryData.currentStreak}`
+    streakLi.textContent = `Max Streak: ${entryData.maxStreak}`
 
-    /* MY NEW CODE FOR CHECK COMPLETE/STREAK */
+    const updateButton = document.createElement('button')
+    updateButton.textContent = "Edit"
+    updateButton.className = `${entryData.name}`
+    updateButton.id = `${entryData.name}`
+    updateButton.addEventListener('click', updateHabit)
+
     let streakDate = new Date(entryData.streakDate)
     let today = new Date()
     // check if they are the same day
@@ -147,25 +152,28 @@ function appendHabit(entryData) {
         && streakDate.getFullYear() === today.getFullYear())
 
     if (!isSameDay) {
-        console.log("here")
         const compLi = document.createElement('li')
-        const compLabel = document.createElement('label')
         const compCheck = document.createElement('button')
-        compLabel.textContent = "Completed Today?"
-        compCheck.textContent = "Complete"
+        compCheck.className = "Water"
+        compCheck.textContent = "Complete?"
         compCheck.setAttribute("id", "compCheck")
+        compCheck.setAttribute("style", "width: 100%;")
         compCheck.addEventListener('click', sendComplete.bind(this, entryData));
-        compLi.appendChild(compLabel)
         compLi.appendChild(compCheck)
-        ul.appendChild(compLi)
+        accordionBodyDiv.appendChild(compLi)
+    } else {
+        const compLi = document.createElement('li')
+        const compCheck = document.createElement('button')
+        compCheck.className = "Water"
+        compCheck.textContent = `${entryData.currentStreak} day streak!`
+        compCheck.setAttribute("id", "compCheck")
+        compCheck.setAttribute("style", "width: 100%;pointer-events: none;")
+        compLi.appendChild(compCheck)
+        accordionBodyDiv.appendChild(compLi)
+        updateButton.setAttribute("style", "display:none;")
     }
-    /* MY NEW CODE FOR CHECK COMPLETE/STREAK */
 
-    const updateButton = document.createElement('button')
-    updateButton.textContent = "Edit"
-    updateButton.className = `${entryData.name}`
-    updateButton.id = `${entryData.name}`
-    updateButton.addEventListener('click', updateHabit)
+    
 
 
     ul.appendChild(progressLi)
@@ -297,7 +305,6 @@ async function sendDelete(id) {
 
 }
 
-/* MY NEW CODE FOR CHECK COMPLETE/STREAK */
 async function sendComplete(habitObject) {
     const id = habitObject._id
     const newStreak = habitObject.currentStreak + 1
@@ -326,7 +333,6 @@ async function sendComplete(habitObject) {
         console.warn(err);
     }
 }
-/* MY NEW CODE FOR CHECK COMPLETE/STREAK */
 
 
 // async function createHabitWhenNoHabit() {

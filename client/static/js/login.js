@@ -27,6 +27,9 @@ async function requestLogin(e){
         }
     } catch (err) {
         console.warn(err);
+        let loginError = document.getElementById('loginError')
+        loginError.setAttribute("style", "display:block;position: inherit;")
+        loginError.innerText = "Incorrect login details. Please try again."
     }
 }
 
