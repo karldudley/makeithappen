@@ -26,8 +26,8 @@ userSchema.statics.signup = async function (email, password) {
     if (!validator.isEmail(email)) {
         throw Error("Email is not valid")
     }
-    if (!validator.isStrongPassword(password)) {
-        throw Error("Password not strong enough")
+    if (!validator.isStrongPassword(password)) {//at least 8 characters, 1 lower & 1 upper, 1 number, 1 symbol
+        throw Error("Passwords must contain:\n-At least 8 characters.\n-At least 1 lowercase letter and 1 uppercase letter.\n-At least 1 number.\n-At least 1 symbol.")
     }
 
     const exists = await this.findOne({ email })
@@ -55,13 +55,13 @@ userSchema.statics.login = async function(email, password) {
     const user = await this.findOne({ email })
 
     if (!user) {
-        throw Error("Incorrect email")
+        throw Error("Invalid login details.")
     }
 
     const match = await bcrypt.compare(password, user.password)
 
     if (!match) {
-        throw Error("Incorrect password")
+        throw Error("Invalid login details.")
     }
 
     return user
