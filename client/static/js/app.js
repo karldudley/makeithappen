@@ -261,7 +261,7 @@ async function sendDelete(id) {
                     'Authorization': `Bearer ${token}`,
                     "Content-Type": "application/json"
                 }
-
+    
             }
             const response = await fetch(`https://make-it-happen-fp.herokuapp.com/habits/${id}`, options);
             const data = await response.json();
