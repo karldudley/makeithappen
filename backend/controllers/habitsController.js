@@ -5,14 +5,13 @@ const mongoose = require('mongoose')
 const getHabits = async (req, res) => {
     try {
         // AUTH
-        // const user_id = req.user._id
+        const user_id = req.user._id
         // only return habits for the currently logged in user
-        // const habits = await Habit.find({ user_id }).sort({createdAt: -1})
+        const habits = await Habit.find({ user_id }).sort({createdAt: -1})
 
         //NO AUTH FOR TESTING
-        const habits = await Habit.find({  }).sort({createdAt: -1})
+        // const habits = await Habit.find({  }).sort({createdAt: -1})
 
-        console.log(habits)
         res.status(200).json(habits)
     } catch (error) {
         res.status(404).json({error: error.message})
@@ -35,10 +34,10 @@ const createHabit = async (req, res) => {
 
     try {
         // AUTH
-        // const user_id = req.user._id;
+        const user_id = req.user._id;
 
         // NO AUTH FOR TESTING
-        const user_id = "111"
+        // const user_id = "111"
 
         // pre-populated values
         currentVal = 0;

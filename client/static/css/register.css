@@ -18,15 +18,6 @@ section {
     flex-grow: 1;
 }
 
-.navbar {
-    height: 70px;
-    background-color: var(--ruby);
-}
-
-.navbar-brand {
-    color: white;
-}
-
 .btn-css {
     width: 150px;
     font-size: 30px;

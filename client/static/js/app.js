@@ -1,8 +1,21 @@
 function getAllHabits() {
-    fetch('https://make-it-happen-fp.herokuapp.com/habits')
-        .then(r => r.json())
-        .then(appendHabits)
-        .catch(console.warn)
+    try {
+        const token = localStorage.getItem('token')
+        const options = {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        }
+        fetch('https://make-it-happen-fp.herokuapp.com/habits', options)
+            .then(r => r.json())
+            .then(appendHabits)
+            .catch(console.warn)
+    } catch (err) {
+        console.log("error")
+        console.warn(err);
+    }
+
 };
 
 function appendHabits(habits) {
@@ -21,6 +34,11 @@ function appendHabit(entryData) {
 
     const accordionItemDiv = document.createElement('div')
     accordionItemDiv.className = 'accordion-item center'
+
+    const close = document.createElement('span');
+    close.className = "close-btn";
+    close.textContent = 'X';
+    close.addEventListener('click', sendDelete.bind(this, localStorage.getItem(entryData.name)));
 
     const accordionHeader = document.createElement('h2')
     accordionHeader.className = 'accordion-header'
@@ -41,6 +59,7 @@ function appendHabit(entryData) {
     progressBar.textContent = 25
 
     progressBarDiv.appendChild(progressBar)
+    accordionItemDiv.appendChild(close)
     accordionItemDiv.appendChild(accordionHeader)
     accordionItemDiv.appendChild(image)
     accordionItemDiv.appendChild(progressBarDiv)
@@ -173,6 +192,34 @@ function postHabit(e) {
 
 };
 
+async function sendDelete(id) {
+
+    var answer = window.confirm("Are you sure you want to delete this habit?");
+    if (answer) {
+        try {
+            const token = localStorage.getItem('token')
+            const options = {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    "Content-Type": "application/json"
+                }
+    
+            }
+            const response = await fetch(`https://make-it-happen-fp.herokuapp.com/habits/${id}`, options);
+            const data = await response.json();
+            if(data.err){
+                console.warn(data.err);
+                logout();
+            }
+            window.location.replace('./view.html')
+        } catch (err) {
+            console.log("error")
+            console.warn(err);
+        }
+    }
+}
+
 
 
 // function createHabit(e) {
@@ -203,6 +250,5 @@ function postHabit(e) {
 // const form = document.querySelector('#create-new-habit')
 // form.addEventListener('submit', createHabit)
 
-// 
-
-module.exports = {getAllHabits, appendHabit, appendHabits}
+//can't export in the client
+// module.exports = {getAllHabits, appendHabit, appendHabits}
