@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+  client: 
+    image: node:16.15.0
+    ports:
+      - 8080:8080
+    volumes:
+      - type: bind
+        source: ./client
+        target: /client
+    working_dir: /client
+    command: bash -c "npm install && npm run dev"
+
+  backend:
+    image: node:16.15.0
+    ports:
+      - 3000:3000
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=futureproof
+      - MONGO_INITDB_ROOT_HOST=db
+      - MONGO_INITDB_ROOT_PASSWORD=password
+      - MONGO_INITDB_DATABASE=usershabits
+      - MONGO_INITDB_ROOT_PORT=5432
+    volumes:
+      - type: bind
+        source: ./backend
+        target: /server
+    working_dir: /server
+    command: bash -c "npm install && npm run dev"
+    depends_on:
+      - db
+
+  db:
+    image: mongo:latest
+    volumes:
+      - "mongodb-data:/data/db"
+      - "./db:/docker-entrypoint-initdb.d/:ro"
+    environment:
+      - MONGO_INITDB_DATABASE=usershabits
+      - MONGO_INITDB_ROOT_USERNAME=futureproof
+      - MONGO_INITDB_ROOT_PASSWORD=password
+
+volumes:
+  mongodb-data:
