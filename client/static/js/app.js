@@ -50,13 +50,16 @@ function appendHabit(entryData) {
     const progressBarDiv = document.createElement('div')
     progressBarDiv.className = 'progress'
 
+    const progressPercentage = (entryData.currentVal/entryData.targetVal)*100
+
     const progressBar = document.createElement('div')
     progressBar.className = 'progress-bar'
-    progressBar.setAttribute('style', 'width: 25%;')
-    progressBar.setAttribute('aria-valuenow', '25')
+    progressBar.id = `${entryData.name}progress-bar`
+    progressBar.setAttribute('style', `width: ${progressPercentage}%;`)
+    progressBar.setAttribute('aria-valuenow', `${progressPercentage}`)
     progressBar.setAttribute('aria-valuemin', '0')
     progressBar.setAttribute('aria-valuemax', '100')
-    progressBar.textContent = 25
+    progressBar.textContent = `${progressPercentage}%`
 
     progressBarDiv.appendChild(progressBar)
     accordionItemDiv.appendChild(close)
@@ -172,6 +175,13 @@ function submitUpdatedHabits (e) {
 
     const targetLi = document.querySelector(`.${e.target.className}Target`)
     targetLi.textContent = `Target: ${targetInput.value}`
+
+    let progressPercentage = ((progressInput.value)/(targetInput.value))*100
+    const updatedProgressBar = document.getElementById(`${e.target.className}progress-bar`)
+    updatedProgressBar.setAttribute('style', `width: ${progressPercentage}%;`)
+    updatedProgressBar.setAttribute('aria-valuenow', `${progressPercentage}`)
+    updatedProgressBar.textContent = `${progressPercentage}%`
+
     postHabit(e)
 }
 
