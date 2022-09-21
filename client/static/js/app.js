@@ -136,7 +136,6 @@ function updateHabit (e) {
     targetInput.className = `${e.target.className}TargetInput`
 
     const progressLi = document.querySelector(`.${e.target.className}Progress`)
-    console.log(progressLi)
     progressLi.textContent = 'Progress: '
     progressLi.appendChild(progressInput)
 
@@ -169,24 +168,25 @@ function submitUpdatedHabits (e) {
 function postHabit(e) {
 
     e.preventDefault()
-    const progressInput = document.querySelector(`.${e.target.className}ProgressInput`)
+    const progressInput = document.querySelector(`.${e.target.className}Progress`)
 
-    const targetInput = document.querySelector(`.${e.target.className}TargetInput`)
+    const targetInput = document.querySelector(`.${e.target.className}Target`)
 
     const entryData = {
-        currentVal: progressInput.value,
-        targetVal: progressInput.value
+        currentVal: parseInt((progressInput.textContent).split(' ')[1]),
+        targetVal: parseInt((targetInput.textContent).split(' ')[1])
     };
-
+    const token = localStorage.getItem('token')
     const options = {
         method: 'PATCH',
         body: JSON.stringify(entryData),
         headers: {
+            'Authorization': `Bearer ${token}`,
             "Content-Type": "application/json"
         }
     };
 
-    fetch('https://make-it-happen-fp.herokuapp.com/habits', options)
+    fetch(`https://make-it-happen-fp.herokuapp.com/habits/${localStorage.getItem(e.target.className)}`, options)
         .then(r => r.json())
         .catch(console.warn)
 
