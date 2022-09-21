@@ -28,9 +28,26 @@ async function createHabit(e) {
     }
 };
 
-
 const form = document.querySelector('#create-new-habit')
 form.addEventListener('submit', createHabit)
 
+const select = document.querySelector('select')
+select.addEventListener('change', updateUnits)
+
+function updateUnits() {
+    const units = document.getElementById('units')
+    const select = document.querySelector('select')
+
+    if (select.value === "Sleep" || select.value === "Gaming" || select.value === "Screentime" || select.value === "Swimming" || select.value === "Reading") {
+        units.textContent = 'hrs'
+        console.log(units)
+    } else if (select.value === "Water") {
+        units.textContent = 'L'
+        console.log(units)
+    } else {
+        units.textContent = 'km'
+        console.log(units)
+    }
+}
 //can't export in the client
 // module.exports = {createHabit}
