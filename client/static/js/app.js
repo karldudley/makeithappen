@@ -12,6 +12,7 @@ function getAllHabits() {
             .then(appendHabits)
             .catch(console.warn)
 
+
         // return new Promise (async(resolve, reject) => {
         //     try {
         //         const cards = document.getElementsByClassName('accordion')
@@ -29,7 +30,24 @@ function getAllHabits() {
 };
 
 function appendHabits(habits) {
+    if (!habits.length) {
+        const div1 = document.createElement('div')
+        const div2 = document.createElement('div')
+        div2.className = 'centreBtn'
+        const redirectToCreateBtn = document.createElement('button')
+        redirectToCreateBtn.className = 'redirectBtn'
+        const redirectToCreate = document.createElement('a')
+        redirectToCreate.setAttribute('href', 'create.html')
+        redirectToCreateBtn.textContent = "You have no habits, try creating one!"
+        redirectToCreate.appendChild(redirectToCreateBtn)
+
+        const habitSection = document.querySelector('section')
+        habitSection.appendChild(div1)
+        div2.appendChild(redirectToCreate)
+        habitSection.appendChild(div2)
+    } else {
     habits.forEach(appendHabit)
+    }
 }
 
 function appendHabit(entryData) {
@@ -119,13 +137,13 @@ function appendHabit(entryData) {
     const streakLi = document.createElement('li')
     streakLi.textContent = `Continuation Streak: ${entryData.currentStreak}`
 
-/* MY NEW CODE FOR CHECK COMPLETE/STREAK */
+    /* MY NEW CODE FOR CHECK COMPLETE/STREAK */
     let streakDate = new Date(entryData.streakDate)
     let today = new Date()
     // check if they are the same day
-    let isSameDay = (streakDate.getDate() === today.getDate() 
-    && streakDate.getMonth() === today.getMonth()
-    && streakDate.getFullYear() === today.getFullYear())
+    let isSameDay = (streakDate.getDate() === today.getDate()
+        && streakDate.getMonth() === today.getMonth()
+        && streakDate.getFullYear() === today.getFullYear())
 
     if (!isSameDay) {
         console.log("here")
@@ -140,7 +158,7 @@ function appendHabit(entryData) {
         compLi.appendChild(compCheck)
         ul.appendChild(compLi)
     }
-/* MY NEW CODE FOR CHECK COMPLETE/STREAK */
+    /* MY NEW CODE FOR CHECK COMPLETE/STREAK */
 
     const updateButton = document.createElement('button')
     updateButton.textContent = "Edit"
@@ -275,14 +293,15 @@ async function sendDelete(id) {
             console.warn(err);
         }
     }
+
 }
 
 /* MY NEW CODE FOR CHECK COMPLETE/STREAK */
 async function sendComplete(habitObject) {
     const id = habitObject._id
-    const newStreak = habitObject.currentStreak+1
+    const newStreak = habitObject.currentStreak + 1
     try {
-        
+
         const token = localStorage.getItem('token')
         const options = {
             method: 'PATCH',
@@ -290,13 +309,13 @@ async function sendComplete(habitObject) {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({currentStreak:newStreak,streakDate: new Date()})
+            body: JSON.stringify({ currentStreak: newStreak, streakDate: new Date() })
         }
         console.log(options)
         const response = await fetch(`https://make-it-happen-fp.herokuapp.com/habits/${id}`, options);
         const data = await response.json();
         console.log(data)
-        if(data.err){
+        if (data.err) {
             console.warn(data.err);
             logout();
         }
@@ -307,6 +326,7 @@ async function sendComplete(habitObject) {
     }
 }
 /* MY NEW CODE FOR CHECK COMPLETE/STREAK */
+
 
 // async function createHabitWhenNoHabit() {
 //     try {
@@ -329,7 +349,6 @@ async function sendComplete(habitObject) {
 //     }
 // }
 
-// createHabitWhenNoHabit()
 
 
 //can't export in the client
