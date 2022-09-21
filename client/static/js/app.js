@@ -50,13 +50,16 @@ function appendHabit(entryData) {
     const progressBarDiv = document.createElement('div')
     progressBarDiv.className = 'progress'
 
+    const progressPercentage = (entryData.currentVal/entryData.targetVal)*100
+
     const progressBar = document.createElement('div')
     progressBar.className = 'progress-bar'
-    progressBar.setAttribute('style', 'width: 25%;')
-    progressBar.setAttribute('aria-valuenow', '25')
+    progressBar.id = `${entryData.name}progress-bar`
+    progressBar.setAttribute('style', `width: ${progressPercentage}%;`)
+    progressBar.setAttribute('aria-valuenow', `${progressPercentage}`)
     progressBar.setAttribute('aria-valuemin', '0')
     progressBar.setAttribute('aria-valuemax', '100')
-    progressBar.textContent = 25
+    progressBar.textContent = `${progressPercentage}%`
 
     progressBarDiv.appendChild(progressBar)
     accordionItemDiv.appendChild(close)
@@ -109,6 +112,7 @@ function appendHabit(entryData) {
     const updateButton = document.createElement('button')
     updateButton.textContent = "Edit"
     updateButton.className = `${entryData.name}`
+    updateButton.id = `${entryData.name}`
     updateButton.addEventListener('click', updateHabit)
 
 
@@ -126,7 +130,10 @@ function appendHabit(entryData) {
 getAllHabits()
 
 
-function updateHabit (e) {    
+function updateHabit (e) {
+    const button = e.target
+    button.setAttribute('hidden', true)
+    
     const progressInput = document.createElement('input') 
     progressInput.setAttribute('type', 'number')
     progressInput.className = `${e.target.className}ProgressInput`
@@ -136,7 +143,6 @@ function updateHabit (e) {
     targetInput.className = `${e.target.className}TargetInput`
 
     const progressLi = document.querySelector(`.${e.target.className}Progress`)
-    console.log(progressLi)
     progressLi.textContent = 'Progress: '
     progressLi.appendChild(progressInput)
 
@@ -154,6 +160,12 @@ function updateHabit (e) {
 }
 
 function submitUpdatedHabits (e) {
+    const hiddenSaveButton = e.target
+    hiddenSaveButton.setAttribute('hidden', true)
+
+    const reappearUpdateButton = document.getElementById(`${e.target.className}`)
+    reappearUpdateButton.removeAttribute('hidden')
+
     const progressInput = document.querySelector(`.${e.target.className}ProgressInput`)
 
     const targetInput = document.querySelector(`.${e.target.className}TargetInput`)
@@ -163,30 +175,38 @@ function submitUpdatedHabits (e) {
 
     const targetLi = document.querySelector(`.${e.target.className}Target`)
     targetLi.textContent = `Target: ${targetInput.value}`
+
+    let progressPercentage = ((progressInput.value)/(targetInput.value))*100
+    const updatedProgressBar = document.getElementById(`${e.target.className}progress-bar`)
+    updatedProgressBar.setAttribute('style', `width: ${progressPercentage}%;`)
+    updatedProgressBar.setAttribute('aria-valuenow', `${progressPercentage}`)
+    updatedProgressBar.textContent = `${progressPercentage}%`
+
     postHabit(e)
 }
 
 function postHabit(e) {
 
     e.preventDefault()
-    const progressInput = document.querySelector(`.${e.target.className}ProgressInput`)
+    const progressInput = document.querySelector(`.${e.target.className}Progress`)
 
-    const targetInput = document.querySelector(`.${e.target.className}TargetInput`)
+    const targetInput = document.querySelector(`.${e.target.className}Target`)
 
     const entryData = {
-        currentVal: progressInput.value,
-        targetVal: progressInput.value
+        currentVal: parseInt((progressInput.textContent).split(' ')[1]),
+        targetVal: parseInt((targetInput.textContent).split(' ')[1])
     };
-
+    const token = localStorage.getItem('token')
     const options = {
         method: 'PATCH',
         body: JSON.stringify(entryData),
         headers: {
+            'Authorization': `Bearer ${token}`,
             "Content-Type": "application/json"
         }
     };
 
-    fetch('https://make-it-happen-fp.herokuapp.com/habits', options)
+    fetch(`https://make-it-happen-fp.herokuapp.com/habits/${localStorage.getItem(e.target.className)}`, options)
         .then(r => r.json())
         .catch(console.warn)
 
