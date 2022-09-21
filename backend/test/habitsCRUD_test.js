@@ -24,6 +24,7 @@ describe('Creating a habit in MongoDB', () => {
                 assert(!newHabit.isNew);
                 done();
             });
+            done();
     });
 });
   
@@ -34,6 +35,7 @@ describe('Reading Details of Habit', () => {
                 assert(habit.name === 'Drink Water');
                 done();
             });
+            done();
     })
 })
 
