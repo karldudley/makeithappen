@@ -2,6 +2,7 @@
     const email = localStorage.getItem('userEmail');
     const logoutDiv = document.getElementById("logoutDiv")
     const habitDrop = document.getElementById("habitDrop")
+    const mihLink = document.getElementById("mihLink")
 
     // change nav appearance and functionality depending on if a user is signed in
     if(email) {
@@ -11,12 +12,18 @@
 
         //enable habit dropdown when logged in
         habitDrop.classList.remove("disabled");
+
+        //change Make It Happen link to view when logged in
+        mihLink.setAttribute("href", "view.html")
     } else {
         logoutDiv.classList.add("d-none");
         logoutDiv.classList.remove("d-flex");
 
         //disable habit dropdown if not logged in
         habitDrop.classList.add("disabled");
+
+        //change Make It Happen link to index when not logged in
+        mihLink.setAttribute("href", "index.html")
     }
     
     
@@ -28,7 +35,7 @@
 </script>
 <nav class="navbar fixed-top navbar-expand-sm navbar-dark" style="background-color:#D81159">
     <div class="container">
-        <a
+        <a  id="mihLink"
             href="index.html" 
             class="navbar-brand mb-0 h1">
             <img 

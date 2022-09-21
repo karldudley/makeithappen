@@ -23,6 +23,9 @@ const habitSchema = new Schema({
     type: Number,
     required: true
   },
+  streakDate: {
+    type: Date,
+  },
   user_id: {
     type: String,
     required: true
