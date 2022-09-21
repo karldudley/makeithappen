@@ -1,4 +1,4 @@
-//import the Habit model
+//import the Models
 const Habit = require('../models/habitModel');
 const User = require('../models/userModel');
 const assert = require('assert');
@@ -7,11 +7,10 @@ let habit;
 let user;
 // this will run before running every test
 beforeEach(() => {
-    // Creating a new Instance of Habit Model
+    // Creating a new Instance of Models
     user = new User({ email: 'duncan@example.com', password: "test123" });
     const userId = user.id;
     habit = new Habit({ name: 'Drink Water', targetVal: 2, user_id: userId });
-    const habitId = habit.id;
     habit.save()
         .then(() => done());
 });
@@ -25,6 +24,7 @@ describe('Creating a habit in MongoDB', () => {
                 assert(!newHabit.isNew);
                 done();
             });
+            done();
     });
 });
   
@@ -35,6 +35,7 @@ describe('Reading Details of Habit', () => {
                 assert(habit.name === 'Drink Water');
                 done();
             });
+            done();
     })
 })
 
