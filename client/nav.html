@@ -1,0 +1,89 @@
+<script>
+    const email = localStorage.getItem('userEmail');
+    const logoutDiv = document.getElementById("logoutDiv")
+    const habitDrop = document.getElementById("habitDrop")
+
+    // change nav appearance and functionality depending on if a user is signed in
+    if(email) {
+        logoutDiv.classList.remove("d-none");
+        logoutDiv.classList.add("d-flex");
+        document.getElementById("email").innerText = email;
+
+        //enable habit dropdown when logged in
+        habitDrop.classList.remove("disabled");
+    } else {
+        logoutDiv.classList.add("d-none");
+        logoutDiv.classList.remove("d-flex");
+
+        //disable habit dropdown if not logged in
+        habitDrop.classList.add("disabled");
+    }
+    
+    
+    //logout function
+    function logout() {
+        localStorage.clear();
+        window.location.replace('./index.html')
+    }
+</script>
+<nav class="navbar fixed-top navbar-expand-sm navbar-dark" style="background-color:#D81159">
+    <div class="container">
+        <a
+            href="index.html" 
+            class="navbar-brand mb-0 h1">
+            <img 
+            class="d-inline-block rounded-circle"
+            src="./static/images/favicon.png" width="50" height="50"/>
+            Make It Happen
+        </a>
+        <button
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            class="navbar-toggler"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-labe="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div 
+            class="collapse navbar-collapse"
+            id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a href="#" id="accountDrop" class="nav-link dropdown-toggle"
+                    id="navbarDropdown" role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                        Account
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a href="login.html" class="dropdown-item">Login</a></li>
+                        <li><a href="register.html" class="dropdown-item">Register</a></li> 
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" id="habitDrop" class="nav-link dropdown-toggle disabled"
+                    id="navbarDropdown" role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                        Habits
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a href="view.html" class="dropdown-item">View</a></li>
+                        <li><a href="create.html" class="dropdown-item">Create</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="https://github.com/karldudley/makeithappen" target="_blank" class="nav-link">
+                        GitHub
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="d-flex" id="logoutDiv">
+            <label class="form-control me-2" id="email">email address</label>
+            <button type="submit" class="btn btn-primary" onclick="logout()">Logout</button>
+        </div>
+    </div>
+</nav>
