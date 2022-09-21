@@ -73,7 +73,8 @@ function appendHabit(entryData) {
     accordionHeader.textContent = entryData.name
 
     const image = document.createElement('img')
-    image.src = './static/images/sleepicon.png'
+    image.className = 'icons'
+    image.src = `./static/images/${entryData.name}.png`
 
     const progressBarDiv = document.createElement('div')
     progressBarDiv.className = 'progress'

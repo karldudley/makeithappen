@@ -101,6 +101,9 @@ li {
     align-items: center;
 }
 
+.icons {
+    height: 200px;
+}
 /* Media Queries */
 @media (min-width: 1700px) {
     section {
