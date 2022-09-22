@@ -186,6 +186,10 @@ function appendHabit(entryData) {
         compCheck.setAttribute("id", "compCheck")
         compCheck.setAttribute("style", "width: 100%;")
         compCheck.addEventListener('click', sendComplete.bind(this, entryData));
+        compCheck.addEventListener('click', () => {
+            progressPercentage = 100;
+            console.log(progressPercentage)
+        })
         compLi.appendChild(compCheck)
         accordionBodyDiv.appendChild(compLi)
     } else {
@@ -215,6 +219,7 @@ function appendHabit(entryData) {
 
 
 getAllHabits()
+
 
 
 function updateHabit(e) {
@@ -289,7 +294,7 @@ function submitUpdatedHabits(e) {
     updatedProgressBar.textContent = `${progressPercentage}%`
     if (progressPercentage >= 100) {
         const streakValue = document.querySelector(`.${e.target.className}CurrentStreak`)
-        sendComplete({_id: localStorage.getItem(e.target.className), currentStreak: parseInt((streakValue.textContent).split(' ')[2]) })
+        sendComplete({_id: localStorage.getItem(e.target.className), currentStreak: parseInt((streakValue.textContent).split(' ')[2]) , targetVal: targetInput.value})
     }
 
     postHabit(e)
@@ -354,6 +359,7 @@ async function sendDelete(id) {
 async function sendComplete(habitObject) {
     const id = habitObject._id
     const newStreak = habitObject.currentStreak + 1
+    const targetVal = habitObject.targetVal
     try {
 
         const token = localStorage.getItem('token')
@@ -363,7 +369,7 @@ async function sendComplete(habitObject) {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ currentStreak: newStreak, streakDate: new Date() })
+            body: JSON.stringify({ currentVal: targetVal, currentStreak: newStreak, streakDate: new Date() })
         }
         console.log(options)
         const response = await fetch(`https://make-it-happen-fp.herokuapp.com/habits/${id}`, options);
