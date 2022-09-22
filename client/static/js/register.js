@@ -36,3 +36,5 @@ function login(token){
     localStorage.setItem("userID", user._id);
     localStorage.setItem("userEmail", user.email);
 }
+
+module.exports = {requestRegister, login}

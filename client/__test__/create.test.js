@@ -38,5 +38,27 @@
         })
     })
 
+    describe('Functions', () => {
+
+        describe('updateUnits', () => {
+            test('Units update when different habits are selected', () => {
+                const units = document.getElementById('units')
+                const select = document.querySelector('select')
+
+                select.value = "Running"
+                app.updateUnits()
+                expect(units.textContent).toBe('km')
+
+                select.value = "Water"
+                app.updateUnits()
+                expect(units.textContent).toBe('L')
+
+                select.value = "Sleep"
+                app.updateUnits()
+                expect(units.textContent).toBe('hrs')
+            })
+        })
+    })
+
     
  })

@@ -68,7 +68,7 @@
         })
 
         describe('sendDelete', () => {
-            test('It sends a delete request to /habits with the habits data', () => {
+            xtest('It sends a delete request to /habits with the habits data', () => {
                 const fakeCreateEvent = {
                     preventDefault: jest.fn(),
                     target: {
@@ -79,6 +79,30 @@
                 app.sendDelete('ukyfyu678567')
                 expect(fetch.mock.calls[0][1]).toHaveProperty('method', 'DELETE');
                 // expect(fetch.mock.calls[0][1]).toHaveProperty('body', JSON.stringify({ name: "Test 1", targetVal: 70}));
+            })
+        })
+
+        describe('postHabit', () => {
+            test('It makes a PATCH request to /habits with the habits data', () => {
+                const fakeCreateEvent = {
+                    preventDefault: jest.fn(),
+                    target: {
+                        task: {value: 'Test1'},
+                        goal: {value: 70}
+                    }
+                }
+
+                const fakeUpdateHabit = {
+                    preventDefault: jest.fn(),
+                    target: {
+                        currentVal: 4,
+                        targetVal: 5
+                    }
+                }
+
+                app.appendHabit(fakeCreateEvent)
+                app.postHabit(fakeUpdateHabit)
+                expect(fetch.mock.calls[0][1]).toHaveProperty('method', 'PATCH');
             })
         })
     })
