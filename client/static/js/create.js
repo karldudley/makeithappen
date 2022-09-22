@@ -40,13 +40,11 @@ function updateUnits() {
 
     if (select.value === "Sleep" || select.value === "Gaming" || select.value === "Screentime" || select.value === "Swimming" || select.value === "Reading") {
         units.textContent = 'hrs'
-        console.log(units)
     } else if (select.value === "Water") {
         units.textContent = 'L'
-        console.log(units)
+
     } else {
         units.textContent = 'km'
-        console.log(units)
     }
 }
 
