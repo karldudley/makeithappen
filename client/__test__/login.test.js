@@ -35,7 +35,6 @@
  
                  app.requestLogin(fakeAccount)
                  expect(fetch.mock.calls[0][1]).toHaveProperty('method', 'POST');
-                 // expect(fetch.mock.calls[0][1]).toHaveProperty('body', JSON.stringify({ name: "Test 1", targetVal: 70}));
              })
          })
      })

@@ -115,12 +115,24 @@ function appendHabit(entryData) {
 
     const ul = document.createElement('ul')
 
+    let suffix;
+
+    if (entryData.name === "Sleep" || entryData.name === "Gaming" || entryData.name === "Screentime" || entryData.name=== "Swimming" || entryData.name === "Reading") {
+        suffix = 'hrs'
+
+    } else if (entryData.name === "Water") {
+        suffix = 'L'
+
+    } else {
+        suffix = 'km'
+    }
+
     const progressLi = document.createElement('li')
-    progressLi.textContent = `Progress: ${entryData.currentVal}`
+    progressLi.textContent = `Progress: ${entryData.currentVal} ${suffix}`
     progressLi.className = `${entryData.name}Progress`
 
     const targetLi = document.createElement('li')
-    targetLi.textContent = `Target: ${entryData.targetVal}`
+    targetLi.textContent = `Target: ${entryData.targetVal} ${suffix}`
     targetLi.className = `${entryData.name}Target`
 
     const streakLi = document.createElement('li')
@@ -161,9 +173,6 @@ function appendHabit(entryData) {
         updateButton.setAttribute("style", "display:none;")
     }
 
-    
-
-
     ul.appendChild(progressLi)
     ul.appendChild(targetLi)
     ul.appendChild(streakLi)
@@ -194,12 +203,12 @@ function updateHabit(e) {
 
     const progressLi = document.querySelector(`.${e.target.className}Progress`)
     progressInput.setAttribute('value', parseInt((progressLi.textContent).split(' ')[1]))
-    progressLi.textContent = 'Progress: '
+    progressLi.textContent = `Progress: `
     progressLi.appendChild(progressInput)
 
     const targetLi = document.querySelector(`.${e.target.className}Target`)
     targetInput.setAttribute('value', parseInt((targetLi.textContent).split(' ')[1]))
-    targetLi.textContent = "Target: "
+    targetLi.textContent = `Target: `
     targetLi.appendChild(targetInput)
 
     const saveButton = document.createElement('button')
@@ -218,15 +227,27 @@ function submitUpdatedHabits(e) {
     const reappearUpdateButton = document.getElementById(`${e.target.className}`)
     reappearUpdateButton.removeAttribute('hidden')
 
+    let updateSuffix;
+
+    if (e.target.className === "Sleep" || e.target.className === "Gaming" || e.target.className === "Screentime" || e.target.className === "Swimming" || e.target.className === "Reading") {
+        updateSuffix = 'hrs'
+
+    } else if (e.target.className === "Water") {
+        updateSuffix = 'L'
+
+    } else {
+        updateSuffix = 'km'
+    }
+
     const progressInput = document.querySelector(`.${e.target.className}ProgressInput`)
 
     const targetInput = document.querySelector(`.${e.target.className}TargetInput`)
 
     const progressLi = document.querySelector(`.${e.target.className}Progress`)
-    progressLi.textContent = `Progress: ${progressInput.value}`
+    progressLi.textContent = `Progress: ${progressInput.value} ${updateSuffix}`
 
     const targetLi = document.querySelector(`.${e.target.className}Target`)
-    targetLi.textContent = `Target: ${targetInput.value}`
+    targetLi.textContent = `Target: ${targetInput.value} ${updateSuffix}`
 
     let progressPercentage = Math.round(((progressInput.value) / (targetInput.value)) * 100)
     const updatedProgressBar = document.getElementById(`${e.target.className}progress-bar`)

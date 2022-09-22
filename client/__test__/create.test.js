@@ -22,6 +22,7 @@
     })
 
     describe('Requests', () => {
+        
         describe('createHabit', () => {
             test('It makes a post request to /habits with the habits data', () => {
                 const fakeCreateEvent = {
@@ -59,6 +60,4 @@
             })
         })
     })
-
-    
  })

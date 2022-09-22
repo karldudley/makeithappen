@@ -15,7 +15,6 @@
     beforeEach(()=> {
         document.documentElement.innerHTML = html.toString();
         app = require('../static/js/app.js')
-        // app2 = require('../static/js/create.js')
     })
 
     afterEach(() => {
@@ -44,6 +43,7 @@
         })
 
         describe('appendHabits', () => {
+
             test('It posts multiple habits to the page', () => {
 
                 const fakeAPI = [
@@ -56,14 +56,16 @@
             })
 
             test('Shows button when empty', () => {
-                const fakeAPI = [
 
-                ]
+                const fakeAPI = []
                 app.appendHabits(fakeAPI)
+
                 const entryCount = document.querySelectorAll('.accordion').length
                 const showButton = document.querySelector('.redirectBtn')
+
                 expect(entryCount).toBeFalsy()
                 expect(showButton).toBeTruthy()
+
             })
         })
 
@@ -102,6 +104,7 @@
 
                 app.appendHabit(fakeCreateEvent)
                 app.postHabit(fakeUpdateHabit)
+                
                 expect(fetch.mock.calls[0][1]).toHaveProperty('method', 'PATCH');
             })
         })
