@@ -14,7 +14,7 @@
         "url": "http://localhost/"
     },
     "testPathIgnorePatterns": [
-      "<rootDir>/__tests__/helpers"
+      "<rootDir>/__test__/helpers.js"
     ]
   },
   "keywords": [],
