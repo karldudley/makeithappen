@@ -87,7 +87,10 @@ function appendHabit(entryData) {
     const progressBarDiv = document.createElement('div')
     progressBarDiv.className = 'progress'
 
-    const progressPercentage = Math.round((entryData.currentVal / entryData.targetVal) * 100)
+    let progressPercentage = Math.round((entryData.currentVal / entryData.targetVal) * 100)
+    if (progressPercentage > 100) {
+        progressPercentage = 100
+    }
 
     const progressBar = document.createElement('div')
     progressBar.className = 'progress-bar'
@@ -277,6 +280,9 @@ function submitUpdatedHabits(e) {
     targetLi.textContent = `Target: ${targetInput.value} ${updateSuffix}`
 
     let progressPercentage = Math.round(((progressInput.value) / (targetInput.value)) * 100)
+    if (progressPercentage > 100) {
+        progressPercentage = 100
+    }
     const updatedProgressBar = document.getElementById(`${e.target.className}progress-bar`)
     updatedProgressBar.setAttribute('style', `width: ${progressPercentage}%;`)
     updatedProgressBar.setAttribute('aria-valuenow', `${progressPercentage}`)
