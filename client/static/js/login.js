@@ -40,4 +40,4 @@ function login(token){
     localStorage.setItem("userEmail", user.email);
 }
 
-module.exports = {requestLogin}
+module.exports = {requestLogin, login}
