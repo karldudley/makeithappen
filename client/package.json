@@ -8,6 +8,15 @@
     "test": "jest --watchAll",
     "coverage": "jest --coverage"
   },
+  "jest": {
+    "verbose": true,
+    "testEnvironmentOptions": {
+        "url": "http://localhost/"
+    },
+    "testPathIgnorePatterns": [
+      "<rootDir>/__tests__/helpers"
+    ]
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

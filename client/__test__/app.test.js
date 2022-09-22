@@ -15,6 +15,7 @@
     beforeEach(()=> {
         document.documentElement.innerHTML = html.toString();
         app = require('../static/js/app.js')
+        // app2 = require('../static/js/create.js')
     })
 
     afterEach(() => {
@@ -42,7 +43,7 @@
             })
         })
 
-        describe('appendEntries', () => {
+        describe('appendHabits', () => {
             test('It posts multiple habits to the page', () => {
 
                 const fakeAPI = [
@@ -52,6 +53,32 @@
                 app.appendHabits(fakeAPI)
                 const entryCount = document.querySelectorAll('.accordion').length
                 expect(entryCount).toBe(2)
+            })
+
+            test('Shows button when empty', () => {
+                const fakeAPI = [
+
+                ]
+                app.appendHabits(fakeAPI)
+                const entryCount = document.querySelectorAll('.accordion').length
+                const showButton = document.querySelector('.redirectBtn')
+                expect(entryCount).toBeFalsy()
+                expect(showButton).toBeTruthy()
+            })
+        })
+
+        describe('sendDelete', () => {
+            test('It sends a delete request to /habits with the habits data', () => {
+                const fakeCreateEvent = {
+                    preventDefault: jest.fn(),
+                    target: {
+                        task: {value: 'Test 1'},
+                        goal: {value: 70}
+                    }
+                }
+                app.sendDelete('ukyfyu678567')
+                expect(fetch.mock.calls[0][1]).toHaveProperty('method', 'DELETE');
+                // expect(fetch.mock.calls[0][1]).toHaveProperty('body', JSON.stringify({ name: "Test 1", targetVal: 70}));
             })
         })
     })
