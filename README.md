@@ -62,6 +62,19 @@ The deployed server can be found on [heroku](https://make-it-happen-fp.herokuapp
 * Mocha
 * Nodemon
 
+## API endpoints
+
+| Route name | Path                                            | Method        | Purpose                            |
+| ---------- | ----------------------------------------------- | ------------- | ---------------------------------- |
+| create     | `/user/signin`                                  | `POST`        | Register a new account             |
+| update     | `/user/login`                                   | `POST`        | Login to an account                |
+| show       | `/habits/`                                      | `GET`         | Get all habits                     |
+| show       | `/habits/:id`                                   | `GET`         | Get a single habit by id           |
+| create     | `/habits/`                                      | `POST`        | Post a new habit                   |
+| destroy    | `/habits/:id`                                   | `DELETE`      | Delete a single habit by id        |
+| update     | `/habits/:id`                                   | `PATCH`       | Update a single habit by id        |
+
+
 ## Website Preview
 ### *Homepage*
 <img src="./readme_images/home.png" alt="drawing" width="500"/>
@@ -103,7 +116,7 @@ The deployed server can be found on [heroku](https://make-it-happen-fp.herokuapp
 ### *Wins*
 1. Implementing CRUD functionality on the server using MVC approach.
 2. Implementing Auth/Auth across server and client.
-3. Progress bar.
+3. Common Nav Bar.
 4. Testing is able to provide a coverage of over 60%.
 
 ### *Challenges*
