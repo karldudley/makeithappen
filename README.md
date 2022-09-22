@@ -122,7 +122,6 @@ The deployed server can be found on [heroku](https://make-it-happen-fp.herokuapp
 
 ### *Challenges*
 1. Updating the streak data. There is a current streak value and a max streak value. To update these we had to compare the last streak update date to the current date. This was to ensure users weren't allowed to complete the same habit more than once per day. Towards the end of development I found out about MongoDB Atlas Triggers that would have made this challenge a lot easier to solve. I will make more use of these next time.
-2. 
 
 ## Code Snippets
 ### *MVC Approach*
