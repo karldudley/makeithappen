@@ -48,11 +48,12 @@
 
                 const fakeAPI = [
                     {name: 'Sleep', targetVal : 8},
-                    {name: 'Games', targetVal : 7}
+                    {name: 'Games', targetVal : 7},
+                    {name: 'Water', targetVal: 2}
                 ]
                 app.appendHabits(fakeAPI)
                 const entryCount = document.querySelectorAll('.accordion').length
-                expect(entryCount).toBe(2)
+                expect(entryCount).toBe(3)
             })
 
             test('Shows button when empty', () => {
@@ -70,7 +71,11 @@
         })
 
         describe('sendDelete', () => {
-            xtest('It sends a delete request to /habits with the habits data', () => {
+
+            jest.spyOn(Object.getPrototypeOf(window.localStorage), 'getItem')
+            Object.setPrototypeOf(window.localStorage.getItem, jest.fn())
+
+            test('It sends a delete request to /habits with the habits data', () => {
                 const fakeCreateEvent = {
                     preventDefault: jest.fn(),
                     target: {
@@ -78,9 +83,11 @@
                         goal: {value: 70}
                     }
                 }
-                app.sendDelete('ukyfyu678567')
-                expect(fetch.mock.calls[0][1]).toHaveProperty('method', 'DELETE');
-                // expect(fetch.mock.calls[0][1]).toHaveProperty('body', JSON.stringify({ name: "Test 1", targetVal: 70}));
+
+                app.sendDelete(fakeCreateEvent)
+                expect(window.localStorage.getItem).toHaveBeenCalledWith('token')
+                // expect(fetch.mock.calls[0][1]).toHaveProperty('method', 'DELETE');
+                
             })
         })
 
