@@ -2,10 +2,10 @@
 
 ## Project Description
 ### The aim of the project was to build a habit tracker where users can:
-* register/login
-* choose a habit to track
-* track progress of habit completion
-* mark a habit as complete for the day
+* Register/login
+* Choose a habit to track
+* Track progress of habit completion
+* Mark a habit as complete for the day
 
 ## Table of contents
 1. [Installation](/README.md#installation)
@@ -24,7 +24,7 @@
 ### *For the deployed website:*
 The deployed website can be found on [netlify](https://make-it-happen-fp.netlify.app/).
 
-### *For the deployed website:*
+### *For the deployed server:*
 The deployed server can be found on [heroku](https://make-it-happen-fp.herokuapp.com/).
 
 ### *To run locally:*
@@ -85,10 +85,10 @@ The deployed server can be found on [heroku](https://make-it-happen-fp.herokuapp
 - We started by creating a mock-up of the client website layout using Excalidraw.
 - We decided that the website would have the following pages: i) Home, ii) Login and iii) Register iv) View v) Create.
 - With a rough overview complete, we discussed what tasks we would focus on. The main tasks we identified were:
-  - Create a consistent look and feel for the website with a common navigation bar
+  - Create a consistent look and feel for the website with a common navigation bar.
   - We decided to utilise bootstrap cards and our own custom styling to display the habits.
-  - Building the backend to deal with CRUD requests for Habits and Users
-  - Implement auth/auth across the server and client
+  - Building the backend to deal with CRUD requests for Habits and Users.
+  - Implement auth/auth across the server and client.
 - Tasks were kept track of on a kanban board using Trello.
 - As soon as we had the foundations of a server and client by the end of the first day, we deployed to Netlify (client), Heroku (server) and MongoDB (data). This meant we were able to consistently view the changes we were making and test accordingly.
 - We communicated regularly over Slack and Zoom to monitor our progress and help each other overcome issues. This included a daily standup.
@@ -101,9 +101,9 @@ The deployed server can be found on [heroku](https://make-it-happen-fp.herokuapp
 
 ## Wins & Challenges
 ### *Wins*
-1. Implementing CRUD functionality on the server using MVC approach
-2. Implementing Auth/Auth across server and client
-3. Progress bar
+1. Implementing CRUD functionality on the server using MVC approach.
+2. Implementing Auth/Auth across server and client.
+3. Progress bar.
 4. Testing is able to provide a coverage of over 60%.
 
 ### *Challenges*
@@ -207,8 +207,8 @@ const updateHabit = async (req, res) => {
 ### *Mocha Coverage*
 <img src="./readme_images/mocha_coverage.png" alt="drawing" width="350"/>
 
-### *User CRUD Testing*
-<img src="./readme_images/user_CRUD_test.png" alt="drawing" width="350"/>
+### *CRUD Testing*
+<img src="./readme_images/CRUD_test.png" alt="drawing" width="350"/>
 
 ## Future Features
 - Ability to add new habits
