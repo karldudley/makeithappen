@@ -49,5 +49,5 @@ function updateUnits() {
         console.log(units)
     }
 }
-//can't export in the client
-// module.exports = {createHabit}
+
+module.exports = {createHabit, updateUnits}

@@ -15,7 +15,7 @@ body {
     align-items: center;
 }
 
-section {
+#notEmpty {
     height: 100%;
     padding: 100px;
     display: grid;
@@ -24,6 +24,13 @@ section {
     grid-row-gap: 60px;
 }
 
+#empty {
+    height: 100%;
+    padding: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .btn-css {
     width: 150px;
     font-size: 30px;
@@ -106,19 +113,19 @@ li {
 }
 /* Media Queries */
 @media (min-width: 1700px) {
-    section {
-        grid-template-columns: repeat(4,300px);
+    #notEmpty {
+        grid-template-columns: repeat(3,300px);
     }
 }
 
 @media (max-width: 1025px) {
-    section {
+    #notEmpty {
         grid-template-columns: repeat(2,300px);
     }
 }
 
 @media (max-width: 675px) {
-    section {
+    #notEmpty {
         grid-template-columns: repeat(1,300px);
     }
 }

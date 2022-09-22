@@ -12,16 +12,6 @@ function getAllHabits() {
             .then(appendHabits)
             .catch(console.warn)
 
-
-        // return new Promise (async(resolve, reject) => {
-        //     try {
-        //         const cards = document.getElementsByClassName('accordion')
-        //         resolve(cards.length)
-        //     } catch(err) {
-        //         reject("No habits")
-        //     }
-        // })
-
     } catch (err) {
         console.log("error")
         console.warn(err);
@@ -31,9 +21,9 @@ function getAllHabits() {
 
 function appendHabits(habits) {
     if (!habits.length) {
-        const div1 = document.createElement('div')
-        const div2 = document.createElement('div')
-        div2.className = 'centreBtn'
+        const habitSection = document.querySelector('section')
+        habitSection.id = 'empty'
+        
         const redirectToCreateBtn = document.createElement('button')
         redirectToCreateBtn.className = 'redirectBtn'
         const redirectToCreate = document.createElement('a')
@@ -41,10 +31,7 @@ function appendHabits(habits) {
         redirectToCreateBtn.textContent = "You have no habits, try creating one!"
         redirectToCreate.appendChild(redirectToCreateBtn)
 
-        const habitSection = document.querySelector('section')
-        habitSection.appendChild(div1)
-        div2.appendChild(redirectToCreate)
-        habitSection.appendChild(div2)
+        habitSection.appendChild(redirectToCreate)
     } else {
     habits.forEach(appendHabit)
     }
@@ -53,6 +40,7 @@ function appendHabits(habits) {
 function appendHabit(entryData) {
     localStorage.setItem(entryData.name, entryData._id)
     const habitSection = document.querySelector('section')
+    habitSection.id = 'notEmpty'
 
     const accordionDiv = document.createElement('div')
     accordionDiv.className = 'accordion'
@@ -334,29 +322,4 @@ async function sendComplete(habitObject) {
     }
 }
 
-
-// async function createHabitWhenNoHabit() {
-//     try {
-//         const something = await getAllHabits()
-//         console.log(something)
-
-//         if (!something) {
-
-//             const redirectToCreateBtn = document.createElement('button')
-//             const redirectToCreate = document.createElement('a')
-//             redirectToCreate.setAttribute('href', 'create.html')
-//             redirectToCreateBtn.textContent = "You have no habits, try creating one!"
-//             redirectToCreate.appendChild(redirectToCreateBtn)
-
-//             const habitSection = document.querySelector('section')
-//             habitSection.appendChild(redirectToCreate)
-//         }
-//     } catch (err) {
-
-//     }
-// }
-
-
-
-//can't export in the client
-// module.exports = {getAllHabits, appendHabit, appendHabits}
+module.exports = {getAllHabits, appendHabit, appendHabits, postHabit, submitUpdatedHabits, sendComplete, sendDelete}

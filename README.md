@@ -43,8 +43,8 @@ The deployed server can be found on [heroku](https://make-it-happen-fp.herokuapp
 
 
 ## Technologies
-* Client - HTML / CSS (Bootstrap)
-* Server - JavaScript / Node
+* Client - HTML / CSS (Bootstrap) / JS
+* Server - Node.js
 * DB - MongoDB Atlas
 ### *Planning*
 * [Trello](https://trello.com/b/ElQcWq6X/make-it-happen)
