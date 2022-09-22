@@ -33,8 +33,28 @@ function appendHabits(habits) {
 
         habitSection.appendChild(redirectToCreate)
     } else {
-    habits.forEach(appendHabit)
+        plusSign()
+        habits.forEach(appendHabit)
+
     }
+}
+
+function plusSign () {
+    const div = document.createElement('div')
+    div.className = 'plusDiv'
+    const habitSection = document.querySelector('section')
+    habitSection.id = 'notEmpty'
+    const circle = document.createElement("button")
+    circle.className = 'circleBtn'
+    const text = document.createElement('p')
+    text.textContent = "+"
+    text.id ='plus'
+    const plus = document.createElement("a")
+    plus.setAttribute('href', 'create.html')
+    circle.appendChild(text)
+    plus.appendChild(circle)
+    div.appendChild(plus)
+    habitSection.appendChild(div)
 }
 
 function appendHabit(entryData) {
@@ -184,6 +204,8 @@ function appendHabit(entryData) {
     moreInfoDiv.appendChild(statsDiv)
     accordionDiv.appendChild(moreInfoDiv)
 }
+
+
 getAllHabits()
 
 
