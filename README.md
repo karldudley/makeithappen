@@ -8,16 +8,17 @@
 * Mark a habit as complete for the day
 
 ## Table of contents
-1. [Installation](/README.md#installation)
+1. [Installation](/README.md#installation-and-usage)
 2. [Technologies](/README.md#technologies)
-3. [Website Preview](/README.md#website-preview)
-4. [Process](/README.md#process)
-5. [Wins & Challenges](/README.md#wins--challenges)
-6. [Code Snippets](/README.md#code-snippets)
-7. [Testing](/README.md#testing)
-8. [Future Features](/README.md#future-features)
-9. [License](/README.md#license)
-10. [Contributors](/README.md#contributors)
+3. [API Endpoints](/README.md#api-endpoints)
+4. [Website Preview](/README.md#website-preview)
+5. [Process](/README.md#process)
+6. [Wins & Challenges](/README.md#wins--challenges)
+7. [Code Snippets](/README.md#code-snippets)
+8. [Testing](/README.md#testing)
+9. [Future Features](/README.md#future-features)
+10. [License](/README.md#license)
+11. [Contributors](/README.md#contributors)
 
 ## Installation and Usage
 
