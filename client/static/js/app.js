@@ -155,8 +155,12 @@ function appendHabit(entryData) {
     targetLi.textContent = `Target: ${entryData.targetVal} ${suffix}`
     targetLi.className = `${entryData.name}Target`
 
-    const streakLi = document.createElement('li')
-    streakLi.textContent = `Max Streak: ${entryData.maxStreak}`
+    const currentStreakLi = document.createElement('li')
+    currentStreakLi.textContent = `Current Streak: ${entryData.currentStreak}`
+    currentStreakLi.className = `${entryData.name}CurrentStreak`
+
+    const maxStreakLi = document.createElement('li')
+    maxStreakLi.textContent = `Max Streak: ${entryData.maxStreak}`
 
     const updateButton = document.createElement('button')
     updateButton.textContent = "Edit"
@@ -195,7 +199,8 @@ function appendHabit(entryData) {
 
     ul.appendChild(progressLi)
     ul.appendChild(targetLi)
-    ul.appendChild(streakLi)
+    ul.appendChild(currentStreakLi)
+    ul.appendChild(maxStreakLi)
 
     accordionBodyDiv.appendChild(ul)
     accordionBodyDiv.appendChild(updateButton)
@@ -276,6 +281,10 @@ function submitUpdatedHabits(e) {
     updatedProgressBar.setAttribute('style', `width: ${progressPercentage}%;`)
     updatedProgressBar.setAttribute('aria-valuenow', `${progressPercentage}`)
     updatedProgressBar.textContent = `${progressPercentage}%`
+    if (progressPercentage >= 100) {
+        const streakValue = document.querySelector(`.${e.target.className}CurrentStreak`)
+        sendComplete({_id: localStorage.getItem(e.target.className), currentStreak: parseInt((streakValue.textContent).split(' ')[2]) })
+    }
 
     postHabit(e)
 }
