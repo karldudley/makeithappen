@@ -50,6 +50,7 @@ function plusSign () {
     text.textContent = "+"
     text.id ='plus'
     const plus = document.createElement("a")
+    plus.className = 'link'
     plus.setAttribute('href', 'create.html')
     circle.appendChild(text)
     plus.appendChild(circle)
@@ -297,7 +298,7 @@ function submitUpdatedHabits(e) {
         sendComplete({_id: localStorage.getItem(e.target.className), currentStreak: parseInt((streakValue.textContent).split(' ')[2]) , targetVal: targetInput.value})
     }
 
-    postHabit(e)
+    postHabit(e) 
 }
 
 function postHabit(e) {
