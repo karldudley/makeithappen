@@ -5,14 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "http-server",
-    "test": "jest --watchAll",
-    "coverage": "jest --coverage"
+    "test": "jest --coverage --watchAll"
   },
   "jest": {
-    "verbose": true,
-    "testEnvironmentOptions": {
-        "url": "http://localhost/"
-    },
     "testPathIgnorePatterns": [
       "<rootDir>/__test__/helpers.js"
     ]

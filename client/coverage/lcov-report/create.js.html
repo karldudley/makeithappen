@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">84% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>14/28</span>
+                <span class='fraction'>21/25</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">81.81% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/11</span>
+                <span class='fraction'>9/11</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/2</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">84% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>14/28</span>
+                <span class='fraction'>21/25</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -114,9 +114,7 @@
 <a name='L49'></a><a href='#L49'>49</a>
 <a name='L50'></a><a href='#L50'>50</a>
 <a name='L51'></a><a href='#L51'>51</a>
-<a name='L52'></a><a href='#L52'>52</a>
-<a name='L53'></a><a href='#L53'>53</a>
-<a name='L54'></a><a href='#L54'>54</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L52'></a><a href='#L52'>52</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -153,18 +151,16 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -205,22 +201,20 @@ form.addEventListener('submit', createHabit)
 const select = document.querySelector('select')
 select.addEventListener('change', updateUnits)
 &nbsp;
-function <span class="fstat-no" title="function not covered" >updateUnits(</span>) {
-    const units = <span class="cstat-no" title="statement not covered" >document.getElementById('units')</span>
-    const select = <span class="cstat-no" title="statement not covered" >document.querySelector('select')</span>
+function updateUnits() {
+    const units = document.getElementById('units')
+    const select = document.querySelector('select')
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    if (select.value === "Sleep" || select.value === "Gaming" || select.value === "Screentime" || select.value === "Swimming" || select.value === "Reading") {</span>
-<span class="cstat-no" title="statement not covered" >        units.textContent = 'hrs'</span>
-<span class="cstat-no" title="statement not covered" >        console.log(units)</span>
-    } else <span class="cstat-no" title="statement not covered" >if (select.value === "Water") {</span>
-<span class="cstat-no" title="statement not covered" >        units.textContent = 'L'</span>
-<span class="cstat-no" title="statement not covered" >        console.log(units)</span>
+    if (select.value === "Sleep" || select.value === "Gaming" || select.value === "Screentime" || select.value === "Swimming" || select.value === "Reading") {
+        units.textContent = 'hrs'
+    } else if (select.value === "Water") {
+        units.textContent = 'L'
+&nbsp;
     } else {
-<span class="cstat-no" title="statement not covered" >        units.textContent = 'km'</span>
-<span class="cstat-no" title="statement not covered" >        console.log(units)</span>
+        units.textContent = 'km'
     }
 }
-//can't export in the client
+&nbsp;
 module.exports = {createHabit, updateUnits}
 &nbsp;</pre></td></tr></table></pre>
 
@@ -229,7 +223,7 @@ module.exports = {createHabit, updateUnits}
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-09-21T15:38:53.064Z
+                at 2022-09-22T16:04:20.662Z
             </div>
         <script src="prettify.js"></script>
         <script>

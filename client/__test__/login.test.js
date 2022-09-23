@@ -44,7 +44,7 @@
         jest.spyOn(Object.getPrototypeOf(window.localStorage), 'setItem')
         Object.setPrototypeOf(window.localStorage.setItem, jest.fn())
 
-        xtest('Calls localStorage', () => {
+        test('Calls localStorage', () => {
 
             const decodedToken = { exp: number } = jwt_decode(token);
 
